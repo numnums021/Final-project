@@ -30,14 +30,8 @@ o
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 d
-4Server/src/main/java/ru/hj77/server/entity/Card.java,9\a\9aba4432d60f9872b0f1f8123a9bf0a08f33f7c0
-d
 4Server/src/main/java/ru/hj77/server/dto/CardDTO.java,8\1\81f41031b916c89eeb6a8cfc5093ec07b0004573
 f
 6Server/src/main/java/ru/hj77/server/dto/ClientDTO.java,f\b\fbf12f0f1d3656ff339bd8f37340ec8253006140
-t
-DServer/src/main/java/ru/hj77/server/repository/ClientRepository.java,8\0\80e08706de53d1dd18dd87a1cf9e3e94e17dd825
 >
 Server/pom.xml,2\6\262e4293dc6f4a41c54ae987de45ac17569f95d0
-j
-:Server/src/main/java/ru/hj77/server/ServerApplication.java,f\3\f317864c1c5407f16fde2afbd9114bf5d43290ea

@@ -3,16 +3,14 @@ package ru.hj77.server.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "cards")
 @NoArgsConstructor
 @Getter
 @Setter
-//@IdClass(CardsPK.class)
 public class Card {
 
     @Id
