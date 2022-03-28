@@ -84,4 +84,41 @@ public class ServerService {
 
         return 0.0;
     }
+
+    public double withdrawMoneyFromTheCard(Long idClients, Long idCards, double money){
+
+        Client client = clientCrudRepository.findById(idClients)
+                .orElseThrow(RuntimeException::new);
+
+        Card card = searchCardByCardId(client, idCards);
+
+        card.setBalance(card.getBalance() + money);
+        clientCrudRepository.save(client);
+
+        return card.getBalance();
+    }
+
+    public double depositMoneyFromTheCard(Long idClients, Long idCards, double money) {
+
+        Client client = clientCrudRepository.findById(idClients)
+                .orElseThrow(RuntimeException::new);
+
+        Card card = searchCardByCardId(client, idCards);
+
+        card.setBalance(card.getBalance() - money);
+        clientCrudRepository.save(client);
+
+        return card.getBalance();
+    }
+
+    public Card searchCardByCardId(Client client, Long idCards) {
+
+        List<Card> cardList = client.getCards();
+
+        for (Card card : cardList)
+            if (card.getId_card().equals(idCards))
+                return card;
+
+        return null;
+    }
 }
