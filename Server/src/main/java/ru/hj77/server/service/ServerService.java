@@ -1,6 +1,7 @@
 package ru.hj77.server.service;
 
 import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import org.springframework.stereotype.Service;
 import ru.hj77.server.dto.CardDTO;
 import ru.hj77.server.dto.ClientDTO;
@@ -77,12 +78,9 @@ public class ServerService {
 
         List<Card> cardList = client.getCards();
 
-        for (Card card : cardList) {
-            if (card.getId_card().equals(idCards))
-                return card.getBalance();
-        }
+        Card card = searchCardByCardId(client, idCards);
 
-        return 0.0;
+        return card.getBalance();
     }
 
     public double withdrawMoneyFromTheCard(Long idClients, Long idCards, double money){
@@ -111,7 +109,7 @@ public class ServerService {
         return card.getBalance();
     }
 
-    public Card searchCardByCardId(Client client, Long idCards) {
+    public Card searchCardByCardId(@NonNull Client client, Long idCards) {
 
         List<Card> cardList = client.getCards();
 
