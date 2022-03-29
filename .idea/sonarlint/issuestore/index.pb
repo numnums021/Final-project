@@ -1,8 +1,6 @@
 
 ;
 Client/mvnw,3\a\3a848705d31024ef8d73e678b1cc39f958dfdae0
-\
-,Server/.mvn/wrapper/maven-wrapper.properties,6\0\6013a53aaa2a4bd4251341088d24f743f6def022
 ?
 Server/mvnw.cmd,c\c\cc84137282b92e9bef4cae99b23c43061159267a
 \
@@ -19,8 +17,6 @@ j
 :Client/src/main/java/ru/hj77/client/ClientApplication.java,f\0\f05bff5ec9cceff519a14ff320d674c5062f364b
 o
 ?Client/src/test/java/ru/hj77/client/ClientApplicationTests.java,8\a\8aed388c2deb12d5fd66aadcf0cd98e44f563b9c
->
-Client/pom.xml,0\a\0a4c3742bc724bd9658ec7c94f6f621e2586d444
 o
 ?Server/src/test/java/ru/hj77/server/ServerApplicationTests.java,c\5\c544315672cab4cc353d035515fb0c6f8b0147fa
 >
@@ -33,5 +29,7 @@ d
 4Server/src/main/java/ru/hj77/server/dto/CardDTO.java,8\1\81f41031b916c89eeb6a8cfc5093ec07b0004573
 f
 6Server/src/main/java/ru/hj77/server/dto/ClientDTO.java,f\b\fbf12f0f1d3656ff339bd8f37340ec8253006140
->
-Server/pom.xml,2\6\262e4293dc6f4a41c54ae987de45ac17569f95d0
+d
+4Client/src/main/java/ru/hj77/client/dto/Balance.java,3\c\3cf245796f43c6dd01180dfdb27f123502741592
+n
+>Client/src/main/java/ru/hj77/client/controller/Controller.java,c\d\cd64ddc3c33a59150dc17573b6cbcc5bf071f16d
