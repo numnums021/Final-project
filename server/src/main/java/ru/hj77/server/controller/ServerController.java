@@ -3,6 +3,7 @@ package ru.hj77.server.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.*;
+import ru.hj77.common.OperationTypes;
 import ru.hj77.common.Response;
 import ru.hj77.server.dto.ClientDTO;
 import ru.hj77.server.service.ServerService;
@@ -43,14 +44,14 @@ public class ServerController {
                                            @PathVariable Long cardId,
                                            @PathVariable double money){
 
-        return new Response(service.withdrawMoneyFromTheCard(clientId, cardId, money));
+        return new Response(service.moneyOperationsWithCardClient(clientId, cardId, money, OperationTypes.WITHDRAW));
     }
 
     @GetMapping("/deposit/clients/{clientId}/cards/{cardId}/{money}")
     public Response depositMoneyFromTheCard(@PathVariable Long clientId,
                                           @PathVariable Long cardId,
                                           @PathVariable double money){
-        return new Response(service.depositMoneyFromTheCard(clientId, cardId, money));
+        return new Response(service.moneyOperationsWithCardClient(clientId, cardId, money, OperationTypes.DEPOSIT));
     }
 
 }

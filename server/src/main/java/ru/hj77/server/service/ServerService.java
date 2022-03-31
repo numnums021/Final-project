@@ -3,6 +3,7 @@ package ru.hj77.server.service;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
+import ru.hj77.common.OperationTypes;
 import ru.hj77.common.Response;
 import ru.hj77.server.dto.CardDTO;
 import ru.hj77.server.dto.ClientDTO;
@@ -72,27 +73,21 @@ public class ServerService {
         return clients;
     }
 
-    public double withdrawMoneyFromTheCard(Long clientId, Long cardId, double money){
-
+    public double moneyOperationsWithCardClient(Long clientId, Long cardId, double money, OperationTypes operationTypes) {
         Client client = clientCrudRepository.findById(clientId)
                 .orElseThrow(RuntimeException::new);
 
         Card card = searchCardByCardId(client, cardId);
 
-        card.setBalance(card.getBalance() + money);
-        clientCrudRepository.save(client);
+        switch (operationTypes) {
+            case WITHDRAW:
+                card.setBalance(card.getBalance() + money);
+                break;
+            case DEPOSIT:
+                card.setBalance(card.getBalance() - money);
+                break;
+        }
 
-        return card.getBalance();
-    }
-
-    public double depositMoneyFromTheCard(Long clientId, Long cardId, double money) {
-
-        Client client = clientCrudRepository.findById(clientId)
-                .orElseThrow(RuntimeException::new);
-
-        Card card = searchCardByCardId(client, cardId);
-
-        card.setBalance(card.getBalance() - money);
         clientCrudRepository.save(client);
 
         return card.getBalance();
