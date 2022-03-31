@@ -13,23 +13,13 @@ A
 Server/.gitignore,4\6\464e8f0b91ef5302305307a2b380593894603633
 ?
 Client/mvnw.cmd,4\6\467c5826080955919cf7cea87ba20b296266c6e8
-j
-:Client/src/main/java/ru/hj77/client/ClientApplication.java,f\0\f05bff5ec9cceff519a14ff320d674c5062f364b
 o
 ?Client/src/test/java/ru/hj77/client/ClientApplicationTests.java,8\a\8aed388c2deb12d5fd66aadcf0cd98e44f563b9c
-o
-?Server/src/test/java/ru/hj77/server/ServerApplicationTests.java,c\5\c544315672cab4cc353d035515fb0c6f8b0147fa
 >
 Client/HELP.md,e\8\e8a4ffc88e5c8e282255d263fb5f158be2ec5cd7
 >
 Server/HELP.md,c\e\ce86482fc99616c68439c84cd4373ebeec875cc8
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 d
 4Server/src/main/java/ru/hj77/server/dto/CardDTO.java,8\1\81f41031b916c89eeb6a8cfc5093ec07b0004573
 f
 6Server/src/main/java/ru/hj77/server/dto/ClientDTO.java,f\b\fbf12f0f1d3656ff339bd8f37340ec8253006140
-d
-4Client/src/main/java/ru/hj77/client/dto/Balance.java,3\c\3cf245796f43c6dd01180dfdb27f123502741592
-n
->Client/src/main/java/ru/hj77/client/controller/Controller.java,c\d\cd64ddc3c33a59150dc17573b6cbcc5bf071f16d
