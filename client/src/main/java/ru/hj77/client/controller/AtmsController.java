@@ -3,10 +3,8 @@ package ru.hj77.client.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import ru.hj77.client.dto.BalanceDTO;
 import ru.hj77.client.service.ClientService;
-import ru.hj77.common.*;
 
 
 @AllArgsConstructor
@@ -16,15 +14,34 @@ public class AtmsController {
 
     private ClientService clientService;
 
-    @GetMapping("/clients/{clientsId}/cards/{cardsId}/pin/{PIN}")
+    @GetMapping("/clients/{clientId}/cards/{cardId}/pin/{PIN}")
     public BalanceDTO getClientBalance(
-            @PathVariable("clientsId") Long clientsId,
-            @PathVariable("cardsId") Long cardsId,
+            @PathVariable("clientId") Long clientId,
+            @PathVariable("cardId") Long cardId,
             @PathVariable("PIN") int pin) {
 
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(
-                "http://localhost:1703/getBalance/clients/{clientsId}/cards/{cardsId}",
-                BalanceDTO.class, clientsId, cardsId);
+        return clientService.getClientBalance(clientId, cardId, pin);
     }
+
+    @GetMapping("/withdraw/clients/{clientId}/cards/{cardId}/pin/{PIN}/{money}")
+    public BalanceDTO withdrawMoneyFromTheCard(
+            @PathVariable("clientId") Long clientId,
+            @PathVariable("cardId") Long cardId,
+            @PathVariable("money") int money,
+            @PathVariable("PIN") int pin) {
+
+        return clientService.withdrawMoneyFromTheCard(clientId, cardId, money, pin);
+    }
+
+    @GetMapping("/deposit/clients/{clientId}/cards/{cardId}/pin/{PIN}/{money}")
+    public BalanceDTO depositMoneyFromTheCard(
+            @PathVariable("clientId") Long clientId,
+            @PathVariable("cardId") Long cardId,
+            @PathVariable("money") int money,
+            @PathVariable("PIN") int pin) {
+
+        return clientService.depositMoneyFromTheCard(clientId, cardId, money, pin);
+    }
+
+
 }

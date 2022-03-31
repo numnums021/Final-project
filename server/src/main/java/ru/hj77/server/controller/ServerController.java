@@ -22,39 +22,35 @@ public class ServerController {
         return service.getAllClients();
     }
 
-    @GetMapping("/clients/{clientsId}")
-    public ClientDTO getClient(@PathVariable Long clientsId){
-        return service.getClient(clientsId) ;
+    @GetMapping("/clients/{clientId}")
+    public ClientDTO getClient(@PathVariable Long clientId){
+        return service.getClient(clientId) ;
     }
 
-    @GetMapping("/getBalance/clients/{clientsId}/cards/{cardsId}")
-    public Response getBalance(@PathVariable Long clientsId,
-                             @PathVariable Long cardsId) {
-       Response response = new Response(
-               service.getClient(clientsId).
+    @GetMapping("/getBalance/clients/{clientId}/cards/{cardId}")
+    public Response getBalance(@PathVariable Long clientId,
+                             @PathVariable Long cardId) {
+       return new Response(
+               service.getClient(clientId).
                        getCardsDTOList().stream().
-                       filter(c -> c.getId_card() == cardsId).collect(Collectors.toList()).
+                       filter(c -> c.getId_card() == cardId).collect(Collectors.toList()).
                        get(0).getBalance()
        );
-
-       log.info(response.toString());
-
-       return response;
     }
 
-    @GetMapping("/withdraw/clients/{clientsId}/cards/{cardsId}/{money}")
-    public double withdrawMoneyFromTheCard(@PathVariable Long clientsId,
-                                           @PathVariable Long cardsId,
+    @GetMapping("/withdraw/clients/{clientId}/cards/{cardId}/{money}")
+    public Response withdrawMoneyFromTheCard(@PathVariable Long clientId,
+                                           @PathVariable Long cardId,
                                            @PathVariable double money){
 
-        return service.withdrawMoneyFromTheCard(clientsId, cardsId, money);
+        return new Response(service.withdrawMoneyFromTheCard(clientId, cardId, money));
     }
 
-    @GetMapping("/deposit/clients/{clientsId}/cards/{cardsId}/{money}")
-    public double depositMoneyFromTheCard(@PathVariable Long clientsId,
-                                          @PathVariable Long cardsId,
+    @GetMapping("/deposit/clients/{clientId}/cards/{cardId}/{money}")
+    public Response depositMoneyFromTheCard(@PathVariable Long clientId,
+                                          @PathVariable Long cardId,
                                           @PathVariable double money){
-        return service.depositMoneyFromTheCard(clientsId, cardsId, money);
+        return new Response(service.depositMoneyFromTheCard(clientId, cardId, money));
     }
 
 }
