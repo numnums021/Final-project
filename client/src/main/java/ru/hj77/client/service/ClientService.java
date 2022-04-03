@@ -1,6 +1,6 @@
 package ru.hj77.client.service;
 
-import lombok.extern.java.Log;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;

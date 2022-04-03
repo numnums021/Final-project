@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public class CardDTO {
-    final int id_card;
+    final Long id_card;
     final int pinCode;
     final double balance;
 }

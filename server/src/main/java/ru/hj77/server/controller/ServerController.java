@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@Log
 @AllArgsConstructor
 @RestController
 public class ServerController {
@@ -29,11 +28,11 @@ public class ServerController {
 
     @GetMapping("/getBalance/clients/{clientId}/cards/{cardId}")
     public Response getBalance(@PathVariable Long clientId,
-                             @PathVariable Long cardId) {
+                               @PathVariable Long cardId) {
        return new Response(
                service.getClient(clientId).
                        getCardsDTOList().stream().
-                       filter(c -> c.getId_card() == cardId).collect(Collectors.toList()).
+                       filter(c -> c.getId_card().equals(cardId)).collect(Collectors.toList()).
                        get(0).getBalance()
        );
     }
@@ -43,14 +42,16 @@ public class ServerController {
                                            @PathVariable Long cardId,
                                            @PathVariable double money){
 
-        return new Response(service.withdrawMoneyFromTheCard(clientId, cardId, money));
+        return new Response(
+                service.withdrawMoneyFromTheCard(clientId, cardId, money));
     }
 
     @GetMapping("/deposit/clients/{clientId}/cards/{cardId}/{money}")
     public Response depositMoneyFromTheCard(@PathVariable Long clientId,
                                           @PathVariable Long cardId,
                                           @PathVariable double money){
-        return new Response(service.depositMoneyFromTheCard(clientId, cardId, money));
+        return new Response(
+                service.depositMoneyFromTheCard(clientId, cardId, money));
     }
 
 }
