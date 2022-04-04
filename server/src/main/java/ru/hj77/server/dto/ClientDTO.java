@@ -8,10 +8,10 @@ import java.util.List;
 @Value
 public class ClientDTO {
     Long id_client;
-    String name;
-    String surname;
-    String patronymic;
-    Date date_of_birth;
+//    String name;
+//    String surname;
+//    String patronymic;
+//    Date date_of_birth;
     List<CardDTO> cardsDTOList;
 
 }

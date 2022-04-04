@@ -1,5 +1,6 @@
 package ru.hj77.server.util;
 
+import lombok.NonNull;
 import org.springframework.stereotype.Service;
 import ru.hj77.server.dto.CardDTO;
 import ru.hj77.server.dto.ClientDTO;
@@ -12,7 +13,7 @@ import java.util.List;
 @Service
 public class MappingUtils {
 
-    public ClientDTO mapToClientDto(Client client) {
+    public ClientDTO mapToClientDto(@NonNull Client client) {
 
         List<Card> cardList = client.getCards();
         List<CardDTO> cardDTOList = new ArrayList<>();
@@ -27,10 +28,10 @@ public class MappingUtils {
 
         return new ClientDTO(
                 client.getId_client(),
-                client.getName(),
-                client.getSurname(),
-                client.getPatronymic(),
-                client.getDate_of_birth(),
+//                client.getName(),
+//                client.getSurname(),
+//                client.getPatronymic(),
+//                client.getDate_of_birth(),
                 cardDTOList
         );
     }

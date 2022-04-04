@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.hj77.server.dto.ClientDTO;
 import ru.hj77.server.entity.Card;
 import ru.hj77.server.entity.Client;
+import ru.hj77.server.exception.ClientNotFoundException;
 import ru.hj77.server.repository.ClientRepository;
 import ru.hj77.server.util.MappingUtils;
 
@@ -23,7 +24,7 @@ public class ServerService {
     public ClientDTO getClient(Long id) {
         return mappingUtils.mapToClientDto(
                 clientCrudRepository.findById(id)
-                    .orElseThrow(RuntimeException::new));
+                    .orElseThrow(ClientNotFoundException::new));
     }
 
     public List<ClientDTO> getAllClients() {
@@ -31,12 +32,19 @@ public class ServerService {
                 map(mappingUtils::mapToClientDto).collect(Collectors.toList());
     }
 
+    public double getBalance(Long clientId, Long cardId) {
+        return mappingUtils.mapToClientDto(clientCrudRepository.findById(clientId).orElseThrow(ClientNotFoundException::new))
+                .getCardsDTOList().stream().filter(c -> cardId.equals(c.getId_card())).collect(Collectors.toList())
+                .get(0)
+                .getBalance();
+    }
+
     public double withdrawMoneyFromTheCard(Long clientId, Long cardId, double money){
         Client client = clientCrudRepository.findById(clientId)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(ClientNotFoundException::new);
 
         Card card = searchCardByCardId(client, cardId);
-        card.setBalance(card.getBalance() + money);
+        card.setBalance(searchCardByCardId(client, cardId).getBalance() + money);
 
         clientCrudRepository.save(client);
 
@@ -44,9 +52,8 @@ public class ServerService {
     }
 
     public double depositMoneyFromTheCard(Long clientId, Long cardId, double money) {
-
         Client client = clientCrudRepository.findById(clientId)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(ClientNotFoundException::new);
 
         Card card = searchCardByCardId(client, cardId);
 

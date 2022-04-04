@@ -43,5 +43,4 @@ public class AtmsController {
         return clientService.depositMoneyFromTheCard(clientId, cardId, money, pin);
     }
 
-
 }

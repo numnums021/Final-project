@@ -91,4 +91,9 @@ class ServerServiceTest {
         assertEquals(card,
                 service.searchCardByCardId(client, 2L));
     }
+
+    @Test
+    void testClientNotFoundException() {
+
+    }
 }
