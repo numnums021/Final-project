@@ -1,18 +1,16 @@
 package ru.hj77.client.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.*;
-import ru.hj77.client.dto.BalanceDTO;
-import ru.hj77.client.service.ClientService;
+import org.springframework.web.client.RestTemplate;
+import ru.hj77.common.dto.BalanceDTO;
 
 
 @AllArgsConstructor
-@Log
 @RestController
 public class AtmsController {
 
-    private ClientService clientService;
+    private RestTemplate restTemplate;
 
     @GetMapping("/clients/{clientId}/cards/{cardId}/pin/{PIN}")
     public BalanceDTO getClientBalance(
@@ -20,7 +18,10 @@ public class AtmsController {
             @PathVariable("cardId") Long cardId,
             @PathVariable("PIN") int pin) {
 
-        return clientService.getClientBalance(clientId, cardId, pin);
+        return restTemplate.getForObject(
+                "http://localhost:1703/getBalance/clients/"+
+                        clientId+"/cards/" + cardId,
+                BalanceDTO.class);
     }
 
     @GetMapping("/withdraw/clients/{clientId}/cards/{cardId}/pin/{PIN}/{money}")
@@ -30,7 +31,10 @@ public class AtmsController {
             @PathVariable("money") int money,
             @PathVariable("PIN") int pin) {
 
-        return clientService.withdrawMoneyFromTheCard(clientId, cardId, money, pin);
+        return restTemplate.getForObject(
+                "http://localhost:1703/withdraw/clients/" + clientId +
+                        "/cards/" + cardId + "/" + money,
+                BalanceDTO.class);
     }
 
     @GetMapping("/deposit/clients/{clientId}/cards/{cardId}/pin/{PIN}/{money}")
@@ -40,7 +44,10 @@ public class AtmsController {
             @PathVariable("money") int money,
             @PathVariable("PIN") int pin) {
 
-        return clientService.depositMoneyFromTheCard(clientId, cardId, money, pin);
+        return restTemplate.getForObject(
+                "http://localhost:1703/deposit/clients/" + clientId +
+                        "/cards/" + cardId + "/" + money,
+                BalanceDTO.class);
     }
 
 }

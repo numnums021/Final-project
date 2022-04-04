@@ -1,6 +1,5 @@
 package ru.hj77.server.service;
 
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -8,14 +7,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.hj77.server.dto.ClientDTO;
 import ru.hj77.server.entity.Card;
 import ru.hj77.server.entity.Client;
 import ru.hj77.server.repository.ClientRepository;
-import ru.hj77.server.util.MappingUtils;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

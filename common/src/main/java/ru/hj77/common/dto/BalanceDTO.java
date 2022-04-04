@@ -1,9 +1,8 @@
-package ru.hj77.client.dto;
+package ru.hj77.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
 
 @AllArgsConstructor
 @RequiredArgsConstructor

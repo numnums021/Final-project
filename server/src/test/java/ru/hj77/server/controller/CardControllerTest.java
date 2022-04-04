@@ -7,7 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.hj77.server.dto.ClientDTO;
+import ru.hj77.common.dto.ClientDTO;
 import ru.hj77.server.service.ServerService;
 
 import java.util.ArrayList;
@@ -20,31 +20,13 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(MockitoJUnitRunner.class)
-class ServerControllerTest {
+class CardControllerTest {
 
     @Mock
     private ServerService service;
 
     @InjectMocks
-    ServerController serverController;
-
-    @Test
-    void testShowAllClients() {
-        when(service.getAllClients()).thenReturn(new ArrayList<ClientDTO>());
-
-        List<ClientDTO> clientDTOList = serverController.showAllClients();
-
-        verify(service).getAllClients();
-    }
-
-    @Test
-    void testGetClient() {
-        when(service.getClient(anyLong())).thenReturn(null);
-
-        serverController.getClient(1L);
-
-        verify(service).getClient(1L);
-    }
+    CardController serverController;
 
     @Test
     void testWithdrawMoneyFromTheCard() {
