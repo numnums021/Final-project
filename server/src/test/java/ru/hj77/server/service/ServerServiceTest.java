@@ -10,15 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import ru.hj77.server.entity.Card;
 import ru.hj77.server.entity.Client;
 import ru.hj77.server.repository.ClientRepository;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
@@ -30,7 +25,7 @@ class ServerServiceTest {
     ClientRepository clientRepository;
 
     @InjectMocks
-    private ServerService service;
+    private CardService service;
 
     @Test
     void testWithdrawMoneyFromTheCard() {

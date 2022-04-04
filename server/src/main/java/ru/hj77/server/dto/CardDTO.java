@@ -1,4 +1,4 @@
-package ru.hj77.common.dto;
+package ru.hj77.server.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

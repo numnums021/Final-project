@@ -53,12 +53,6 @@ f
 6server/src/main/java/ru/hj77/server/entity/Client.java,f\0\f0078b7f095d87a201345ca65bdbe41f5d5cf466
 d
 4server/src/main/java/ru/hj77/server/entity/Card.java,b\7\b74fccf336674ddef64a8256af4b19cfb2f01c12
-k
-;client/src/test/java/ru/hj77/client/dto/BalanceDTOTest.java,6\0\60622b45a3ebd94d3a6a9b3f9c4b0935145627b8
-h
-8server/src/test/java/ru/hj77/server/entity/CardTest.java,2\8\282f2c19d994ffc36f3fc8f23688cfed3f8bfaf9
-j
-:server/src/test/java/ru/hj77/server/entity/ClientTest.java,d\3\d3659b4516845d57600bb6cd60e8cde8509ebf56
 z
 Jserver/src/main/java/ru/hj77/server/exception/ClientNotFoundException.java,6\4\6450c2179a1d10f400056aaf8ca613e58d01ef97
 t

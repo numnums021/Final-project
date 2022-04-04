@@ -3,36 +3,33 @@ package ru.hj77.server.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.hj77.common.dto.BalanceDTO;
-import ru.hj77.common.dto.ClientDTO;
-import ru.hj77.server.service.ServerService;
-import java.util.List;
+import ru.hj77.common.dto.RequestDTO;
+import ru.hj77.server.service.CardService;
 
 
 @AllArgsConstructor
+@RequestMapping("/card")
 @RestController
 public class CardController {
 
-    private ServerService service;
+    private CardService service;
 
-    @GetMapping("/getBalance/clients/{clientId}/cards/{cardId}")
-    public BalanceDTO getBalance(@PathVariable Long clientId,
-                                 @PathVariable Long cardId) {
-       return new BalanceDTO(service.getBalance(clientId, cardId));
+    @PostMapping(value = "/getBalance")
+    public BalanceDTO getBalance(@RequestBody RequestDTO request) {
+       return new BalanceDTO(service.getBalance(request.getClientId(), request.getCardId()));
     }
 
-    @GetMapping("/withdraw/clients/{clientId}/cards/{cardId}/{money}")
-    public BalanceDTO withdrawMoneyFromTheCard(@PathVariable Long clientId,
-                                           @PathVariable Long cardId,
-                                           @PathVariable double money){
+    @PostMapping("/withdraw/{money}")
+    public BalanceDTO withdrawMoneyFromTheCard(@RequestBody RequestDTO request,
+                                               @PathVariable double money){
 
-        return new BalanceDTO(service.withdrawMoneyFromTheCard(clientId, cardId, money));
+        return new BalanceDTO(service.withdrawMoneyFromTheCard(request.getClientId(), request.getCardId(), money));
     }
 
-    @GetMapping("/deposit/clients/{clientId}/cards/{cardId}/{money}")
-    public BalanceDTO depositMoneyFromTheCard(@PathVariable Long clientId,
-                                          @PathVariable Long cardId,
-                                          @PathVariable double money){
-        return new BalanceDTO(service.depositMoneyFromTheCard(clientId, cardId, money));
+    @PostMapping("/deposit/{money}")
+    public BalanceDTO depositMoneyFromTheCard(@RequestBody RequestDTO request,
+                                              @PathVariable double money){
+        return new BalanceDTO(service.depositMoneyFromTheCard(request.getClientId(), request.getCardId(), money));
     }
 
 }

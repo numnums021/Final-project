@@ -2,8 +2,8 @@ package ru.hj77.server.util;
 
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
-import ru.hj77.common.dto.CardDTO;
-import ru.hj77.common.dto.ClientDTO;
+import ru.hj77.server.dto.CardDTO;
+import ru.hj77.server.dto.ClientDTO;
 import ru.hj77.server.entity.Card;
 import ru.hj77.server.entity.Client;
 

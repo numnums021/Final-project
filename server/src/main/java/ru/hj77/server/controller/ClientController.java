@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import ru.hj77.common.dto.ClientDTO;
+import ru.hj77.server.dto.ClientDTO;
 import ru.hj77.server.service.ServerService;
 
 import java.util.List;

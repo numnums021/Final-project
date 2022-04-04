@@ -1,4 +1,4 @@
-package ru.hj77.client;
+package ru.hj77.client.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
