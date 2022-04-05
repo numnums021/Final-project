@@ -9,7 +9,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.hj77.server.entity.Card;
 import ru.hj77.server.entity.Client;
-import ru.hj77.server.exception.EntityNotFoundException;
 import ru.hj77.server.repository.CardRepository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

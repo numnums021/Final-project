@@ -7,7 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.hj77.common.communication.Request;
+import ru.hj77.common.communication.requests.RequestBasicOperations;
+import ru.hj77.common.communication.requests.RequestCashTransactions;
 import ru.hj77.server.service.CardService;
 import ru.hj77.server.service.SecurityService;
 
@@ -37,7 +38,7 @@ class CardControllerTest {
         when(service.getBalance(anyLong()))
                 .thenReturn(10.0);
 
-        controller.getBalance(new Request(1L, 0));
+        controller.getBalance(new RequestBasicOperations(1L, 0));
 
         verify(service).getBalance(1L);
 
@@ -51,7 +52,7 @@ class CardControllerTest {
         when(service.withdrawMoneyFromTheCard(anyLong(), anyDouble()))
                 .thenReturn(10.5);
 
-        controller.withdrawMoneyFromTheCard(new Request(1L, 0),10);
+        controller.withdrawMoneyFromTheCard(new RequestCashTransactions(1L, 0, 10));
 
         verify(service).withdrawMoneyFromTheCard( 1L, 10.0);
     }
@@ -64,7 +65,7 @@ class CardControllerTest {
         when(service.depositMoneyFromTheCard(anyLong(), anyDouble()))
                 .thenReturn(10.5);
 
-        controller.depositMoneyFromTheCard(new Request(1L, 0),10);
+        controller.depositMoneyFromTheCard(new RequestCashTransactions(1L, 0,10));
 
         verify(service).depositMoneyFromTheCard( 1L, 10.0);
     }
