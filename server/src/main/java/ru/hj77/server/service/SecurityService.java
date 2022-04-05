@@ -2,7 +2,7 @@ package ru.hj77.server.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.hj77.server.exception.EntityNotFoundException;
+import ru.hj77.common.exception.NoSuchDataException;
 import ru.hj77.server.repository.CardRepository;
 
 
@@ -13,7 +13,7 @@ public class SecurityService {
 
     public boolean cardIsAuth(Long cardId, int pin){
         return cardRepository.findById(cardId)
-                .orElseThrow(EntityNotFoundException::new)
+                .orElseThrow(NoSuchDataException::new)
                 .getPinCode() == pin;
     }
 

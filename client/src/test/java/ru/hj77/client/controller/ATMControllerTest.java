@@ -16,10 +16,10 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(MockitoJUnitRunner.class)
-class AtmsControllerTest {
+class ATMControllerTest {
 
     @InjectMocks
-    AtmsController atmsController;
+    ATMController ATMController;
 
     @Mock
     AtmsService service;
@@ -29,7 +29,7 @@ class AtmsControllerTest {
         when(service.getClientBalance(anyLong(), anyInt()))
                 .thenReturn(new Response(1));
 
-        atmsController.getClientBalance(1L, 0);
+        ATMController.getClientBalance(1L, 0);
 
         verify(service).getClientBalance(1L, 0);
     }
@@ -39,7 +39,7 @@ class AtmsControllerTest {
         when(service.withdrawMoneyToCard(anyLong(), anyInt(), anyInt()))
                 .thenReturn(new Response(1));
 
-        atmsController.withdrawMoneyToCard(1L, 1, 0);
+        ATMController.withdrawMoneyToCard(1L, 1, 0);
 
         verify(service).withdrawMoneyToCard(1L, 1, 0);
     }
@@ -49,7 +49,7 @@ class AtmsControllerTest {
         when(service.depositMoneyToCard(anyLong(), anyInt(), anyInt()))
                 .thenReturn(new Response(1));
 
-        atmsController.depositMoneyToCard(1L, 1, 0);
+        ATMController.depositMoneyToCard(1L, 1, 0);
 
         verify(service).depositMoneyToCard(1L, 1, 0);
     }

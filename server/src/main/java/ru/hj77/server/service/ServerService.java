@@ -2,8 +2,8 @@ package ru.hj77.server.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.hj77.common.exception.NoSuchDataException;
 import ru.hj77.server.dto.ClientDTO;
-import ru.hj77.server.exception.EntityNotFoundException;
 import ru.hj77.server.repository.ClientRepository;
 import ru.hj77.server.util.MappingUtils;
 
@@ -21,7 +21,7 @@ public class ServerService {
     public ClientDTO getClient(Long id) {
         return mappingUtils.mapToClientDto(
                 clientCrudRepository.findById(id)
-                    .orElseThrow(EntityNotFoundException::new));
+                    .orElseThrow(NoSuchDataException::new));
     }
 
     public List<ClientDTO> getAllClients() {
