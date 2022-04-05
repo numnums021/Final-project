@@ -2,34 +2,47 @@ package ru.hj77.server.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.hj77.common.dto.BalanceDTO;
-import ru.hj77.common.dto.RequestDTO;
+import ru.hj77.common.communication.Response;
+import ru.hj77.common.communication.Request;
+import ru.hj77.server.exception.EntityNotFoundException;
 import ru.hj77.server.service.CardService;
+import ru.hj77.server.service.SecurityService;
 
 
 @AllArgsConstructor
-@RequestMapping("/card")
 @RestController
+@RequestMapping("/card")
 public class CardController {
 
     private CardService service;
+    private SecurityService securityService;
+    private final String AUTH_ERROR = "Ошибка аутентификации.";
 
     @PostMapping(value = "/getBalance")
-    public BalanceDTO getBalance(@RequestBody RequestDTO request) {
-       return new BalanceDTO(service.getBalance(request.getClientId(), request.getCardId()));
+    public Response getBalance(@RequestBody Request request) {
+       if (securityService.cardIsAuth(request.getCardId(), request.getPin()))
+           return new Response(service.getBalance(request.getCardId()));
+       else
+           throw new EntityNotFoundException(AUTH_ERROR);
     }
 
     @PostMapping("/withdraw/{money}")
-    public BalanceDTO withdrawMoneyFromTheCard(@RequestBody RequestDTO request,
-                                               @PathVariable double money){
-
-        return new BalanceDTO(service.withdrawMoneyFromTheCard(request.getClientId(), request.getCardId(), money));
+    public Response withdrawMoneyFromTheCard(@RequestBody Request request,
+                                             @PathVariable double money){
+        if (securityService.cardIsAuth(request.getCardId(), request.getPin()))
+            return new Response(
+                    service.withdrawMoneyFromTheCard(request.getCardId(), money));
+        else
+            throw new EntityNotFoundException(AUTH_ERROR);
     }
 
     @PostMapping("/deposit/{money}")
-    public BalanceDTO depositMoneyFromTheCard(@RequestBody RequestDTO request,
-                                              @PathVariable double money){
-        return new BalanceDTO(service.depositMoneyFromTheCard(request.getClientId(), request.getCardId(), money));
+    public Response depositMoneyFromTheCard(@RequestBody Request request,
+                                            @PathVariable double money){
+        if (securityService.cardIsAuth(request.getCardId(), request.getPin()))
+            return new Response(service.depositMoneyFromTheCard(request.getCardId(), money));
+        else
+            throw new EntityNotFoundException(AUTH_ERROR);
     }
 
 }
