@@ -9,10 +9,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.hj77.server.entity.Card;
 import ru.hj77.server.entity.Client;
-import ru.hj77.server.repository.ClientRepository;
-import java.util.Arrays;
-import java.util.List;
+import ru.hj77.server.exception.EntityNotFoundException;
+import ru.hj77.server.repository.CardRepository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -22,69 +22,39 @@ import static org.mockito.Mockito.when;
 class ServerServiceTest {
 
     @Mock
-    ClientRepository clientRepository;
+    CardRepository cardRepository;
 
     @InjectMocks
     private CardService service;
 
     @Test
+    void testGetBalance(){
+        when(cardRepository.findById(anyLong()))
+                .thenReturn(java.util.Optional.of(
+                        new Card(1L, 1, 10, new Client())));
+
+        double actualBalance = service.getBalance(1L);
+
+        assertEquals(10 ,actualBalance);
+    }
+
+    @Test
     void testWithdrawMoneyFromTheCard() {
-        Client client = new Client();
-        client.setId_client(1L);
+        when(cardRepository.findById(anyLong()))
+                .thenReturn(java.util.Optional.of(new Card(1L, 1, 10, new Client())));
 
-        List<Card> cardsList = Arrays.asList(
-                new Card(1L, 1111, 1232.0, client),
-                new Card(2L, 2222, 9800.5, client)
-        );
+        double actualBalance = service.withdrawMoneyFromTheCard(1L, 10);
 
-        client.setCards(cardsList);
-
-        when(clientRepository.findById(anyLong()))
-                .thenReturn(java.util.Optional.of(client));
-
-        assertEquals(10000.5,
-                service.withdrawMoneyFromTheCard(1L, 2L, 200));
+        assertEquals(20 ,actualBalance);
     }
 
     @Test
     void testDepositMoneyFromTheCard() {
-        Client client = new Client();
-        client.setId_client(1L);
+        when(cardRepository.findById(anyLong()))
+                .thenReturn(java.util.Optional.of(new Card(1L, 1, 10, new Client())));
 
-        List<Card> cardsList = Arrays.asList(
-                new Card(1L, 1111, 1232, client),
-                new Card(2L, 2222, 9800.5, client)
-        );
+        double actualBalance = service.depositMoneyFromTheCard(1L, 10);
 
-        client.setCards(cardsList);
-
-        when(clientRepository.findById(anyLong()))
-                .thenReturn(java.util.Optional.of(client));
-
-        assertEquals(1000.0,
-                service.depositMoneyFromTheCard(1L, 1L, 232));
-    }
-
-    @Test
-    void testSearchCardByCardId() {
-        Client client = new Client();
-        client.setId_client(1L);
-
-        Card card = new Card(2L, 2222, 9800.5, client);
-
-        List<Card> cardsList = Arrays.asList(
-                new Card(1L, 1111, 1232, client),
-                card
-        );
-
-        client.setCards(cardsList);
-
-        assertEquals(card,
-                service.searchCardByCardId(client, 2L));
-    }
-
-    @Test
-    void testClientNotFoundException() {
-
+        assertEquals(0 ,actualBalance);
     }
 }

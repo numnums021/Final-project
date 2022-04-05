@@ -28,10 +28,10 @@ public class MappingUtils {
 
         return new ClientDTO(
                 client.getId_client(),
-//                client.getName(),
-//                client.getSurname(),
-//                client.getPatronymic(),
-//                client.getDate_of_birth(),
+                client.getName(),
+                client.getSurname(),
+                client.getPatronymic(),
+                client.getDate_of_birth(),
                 cardDTOList
         );
     }

@@ -1,60 +1,56 @@
-//package ru.hj77.client.controller;
-//
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.junit.runner.RunWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.MockitoJUnitRunner;
-//import org.mockito.junit.jupiter.MockitoExtension;
-//import org.springframework.web.client.RestTemplate;
-//import ru.hj77.client.dto.BalanceDTO;
-//import ru.hj77.client.service.ClientService;
-//import ru.hj77.common.dto.BalanceDTO;
-//
-//import static org.mockito.ArgumentMatchers.*;
-//import static org.mockito.Mockito.verify;
-//import static org.mockito.Mockito.when;
-//
-//@ExtendWith(MockitoExtension.class)
-//@RunWith(MockitoJUnitRunner.class)
-//class AtmsControllerTest {
-//
-//    @Mock
-//    private RestTemplate restTemplate;
-//    @InjectMocks
-//    AtmsController atmsController;
-//
-//    @Mock
-//    private BalanceDTO BalanceDTO;
-//
-//    @Test
-//    void testGetClientBalance() {
-//        when(restTemplate.getForObject(anyString(), BalanceDTO.getClass()))
-//                .thenReturn(new BalanceDTO(1.1));
-//
-//        atmsController.getClientBalance(1L, 1L, 2500);
-//
-//        verify(clientService).getClientBalance(1L, 1L, 2500);
-//    }
-//
-//    @Test
-//    void testWithdrawMoneyFromTheCard() {
-////        when(clientService.withdrawMoneyFromTheCard(anyLong(), anyLong(), anyInt(), anyInt()))
-////                .thenReturn(new BalanceDTO(100.5));
-////
-////        atmsController.withdrawMoneyFromTheCard(1L, 1L, 2500, 123);
-////
-////        verify(clientService).withdrawMoneyFromTheCard(1L, 1L, 2500, 123);
-//    }
-//
-//    @Test
-//    void testDepositMoneyFromTheCard() {
-////        when(clientService.depositMoneyFromTheCard(anyLong(), anyLong(), anyInt(), anyInt()))
-////                .thenReturn(new BalanceDTO(100.5));
-////
-////        atmsController.depositMoneyFromTheCard(1L, 1L, 2500, 123);
-////
-////        verify(clientService).depositMoneyFromTheCard(1L, 1L, 2500, 123);
-//    }
-//}
+package ru.hj77.client.controller;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import ru.hj77.client.service.AtmsService;
+import ru.hj77.common.communication.Response;
+
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+@RunWith(MockitoJUnitRunner.class)
+class AtmsControllerTest {
+
+    @InjectMocks
+    AtmsController atmsController;
+
+    @Mock
+    AtmsService service;
+
+    @Test
+    void testGetClientBalance() {
+        when(service.getClientBalance(anyLong(), anyInt()))
+                .thenReturn(new Response(1));
+
+        atmsController.getClientBalance(1L, 0);
+
+        verify(service).getClientBalance(1L, 0);
+    }
+
+    @Test
+    void testWithdrawMoneyFromTheCard() {
+        when(service.withdrawMoneyToCard(anyLong(), anyInt(), anyInt()))
+                .thenReturn(new Response(1));
+
+        atmsController.withdrawMoneyToCard(1L, 1, 0);
+
+        verify(service).withdrawMoneyToCard(1L, 1, 0);
+    }
+
+    @Test
+    void testDepositMoneyFromTheCard() {
+        when(service.depositMoneyToCard(anyLong(), anyInt(), anyInt()))
+                .thenReturn(new Response(1));
+
+        atmsController.depositMoneyToCard(1L, 1, 0);
+
+        verify(service).depositMoneyToCard(1L, 1, 0);
+    }
+}
