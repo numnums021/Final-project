@@ -19,7 +19,7 @@ public class AtmsService {
                 new HttpEntity<>(new RequestBasicOperations(cardId, pin));
 
         return restTemplate.postForObject(
-                "http://localhost:1703/card/getBalance/", request, Response.class);
+                "http://localhost:1703/card/balance/", request, Response.class);
     }
 
     public Response withdrawMoneyToCard(Long cardId, int money, int pin) {

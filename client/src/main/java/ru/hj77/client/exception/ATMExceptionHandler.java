@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import ru.hj77.common.exception.IncorrectData;
-import ru.hj77.common.exception.NoSuchDataException;
+import ru.hj77.client.exception.IncorrectData;
+import ru.hj77.client.exception.NoSuchDataException;
 
 @ControllerAdvice
 public class ATMExceptionHandler {
