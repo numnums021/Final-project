@@ -20,14 +20,14 @@ INSERT INTO clients(name, surname, patronymic, date_of_birth) VALUES
 
 CREATE TABLE Cards(
                       id_card SERIAL,
-                      pinCode INT NOT NULL,
+                      pin INT NOT NULL,
                       balance NUMERIC,
                       id_client INT NOT NULL,
                       FOREIGN KEY (id_client) REFERENCES Clients(id_client),
                       PRIMARY KEY(id_card)
 );
 
-INSERT INTO cards(pinCode, balance, id_client)  VALUES
+INSERT INTO cards(pin, balance, id_client)  VALUES
                                                     (0001, 500.3, 1),
                                                     (0010, 10000.5, 1),
                                                     (0011, 1039.99, 2),

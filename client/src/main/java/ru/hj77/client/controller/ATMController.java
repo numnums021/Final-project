@@ -2,7 +2,7 @@ package ru.hj77.client.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.hj77.common.exception.NoSuchDataException;
+import ru.hj77.client.exception.NoSuchDataException;
 import ru.hj77.client.service.AtmsService;
 import ru.hj77.common.communication.Response;
 

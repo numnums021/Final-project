@@ -27,9 +27,9 @@ class CardTest {
     void getPinCode() {
         int pinCode = 1111;
 
-        card.setPinCode(pinCode);
+        card.setPin(pinCode);
 
-        assertEquals(pinCode, card.getPinCode());
+        assertEquals(pinCode, card.getPin());
     }
 
     @Test

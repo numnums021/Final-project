@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.hj77.common.communication.Response;
 import ru.hj77.common.communication.requests.RequestBasicOperations;
 import ru.hj77.common.communication.requests.RequestCashTransactions;
-import ru.hj77.common.exception.NoSuchDataException;
+import ru.hj77.server.exception.NoSuchDataException;
 import ru.hj77.server.service.CardService;
 import ru.hj77.server.service.SecurityService;
 
@@ -20,7 +20,7 @@ public class CardController {
     private CardService service;
     private SecurityService securityService;
 
-    @PostMapping(value = "/getBalance")
+    @PostMapping(value = "/balance")
     public Response getBalance(@RequestBody RequestBasicOperations request) {
        if (securityService.cardIsAuth(request.getCardId(), request.getPin()))
            return new Response(service.getBalance(request.getCardId()));
