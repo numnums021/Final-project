@@ -21,7 +21,7 @@ public class MappingUtils {
         for (Card card : cardList) {
             cardDTOList.add(new CardDTO(
                     card.getId_card(),
-                    card.getPinCode(),
+                    card.getPin(),
                     card.getBalance())
             );
         }

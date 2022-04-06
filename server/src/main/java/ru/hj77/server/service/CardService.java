@@ -2,7 +2,7 @@ package ru.hj77.server.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.hj77.common.exception.NoSuchDataException;
+import ru.hj77.server.exception.NoSuchDataException;
 import ru.hj77.server.entity.Card;
 import ru.hj77.server.repository.CardRepository;
 

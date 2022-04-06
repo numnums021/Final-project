@@ -1,4 +1,4 @@
-package ru.hj77.common.exception;
+package ru.hj77.server.exception;
 
 import lombok.Data;
 
