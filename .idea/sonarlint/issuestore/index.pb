@@ -88,8 +88,6 @@ Vcommon/src/main/java/ru/hj77/common/communication/requests/RequestBasicOperatio
 ‚
 Rserver/src/test/java/ru/hj77/server/controller/AdditionallyCardControllerTest.java,d\8\d8c8dd053876eb6564be6daafe7da89cf42fceeb
 d
-4server/src/main/java/ru/hj77/server/entity/Card.java,b\7\b74fccf336674ddef64a8256af4b19cfb2f01c12
-d
 4server/src/main/java/ru/hj77/server/dto/CardDTO.java,8\9\89acf8d6c926644d82ca03df8737eaab23aa4c0e
 h
 8server/src/test/java/ru/hj77/server/entity/CardTest.java,2\8\282f2c19d994ffc36f3fc8f23688cfed3f8bfaf9
@@ -107,3 +105,5 @@ v
 Fserver/src/main/java/ru/hj77/server/exception/NoSuchDataException.java,e\4\e4b4f289525fd15c1c370be8c63056a455ac8d33
 n
 >server/src/main/java/ru/hj77/server/service/ServerService.java,b\3\b3285e4a65ad1b9745bd9287bd310a36de9b47f1
+l
+<server/src/main/java/ru/hj77/server/service/CardService.java,3\5\35b1fe7b95b87190152287ac41dd48be4925f0ca

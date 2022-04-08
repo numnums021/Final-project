@@ -1,6 +1,9 @@
 package ru.hj77.server.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 import ru.hj77.common.communication.Response;
 import ru.hj77.common.communication.requests.RequestBasicOperations;
@@ -8,6 +11,9 @@ import ru.hj77.common.communication.requests.RequestCashTransactions;
 import ru.hj77.server.exception.NoSuchDataException;
 import ru.hj77.server.service.CardService;
 import ru.hj77.server.service.SecurityService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @AllArgsConstructor
@@ -45,4 +51,13 @@ public class CardController {
             throw new NoSuchDataException(AUTH_ERROR);
     }
 
+
+    @RequestMapping(value="/logmeout", method = RequestMethod.POST)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "123123";
+    }
 }
