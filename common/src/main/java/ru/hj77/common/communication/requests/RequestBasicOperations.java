@@ -5,5 +5,5 @@ import lombok.Value;
 @Value
 public class RequestBasicOperations {
     Long cardId;
-    int pin;
+    String pin;
 }

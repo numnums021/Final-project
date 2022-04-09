@@ -18,9 +18,9 @@ public class ATMController {
 
     @GetMapping("/cards/{cardId}/pin/{PIN}")
     public Response getClientBalance(@PathVariable("cardId") Long cardId,
-                                     @PathVariable("PIN") int pin) {
+                                     @PathVariable("PIN") String pin) {
 
-        if ((cardId >= 0) && (pin >= 0))
+        if ((cardId >= 0) && (pin.length() > 0))
             return service.getClientBalance(cardId, pin);
         else
             throw new NoSuchDataException(EXC_INFO);

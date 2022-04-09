@@ -28,10 +28,7 @@ public class CardController {
 
     @PostMapping(value = "/balance")
     public Response getBalance(@RequestBody RequestBasicOperations request) {
-       if (securityService.cardIsAuth(request.getCardId(), request.getPin()))
            return new Response(service.getBalance(request.getCardId()));
-       else
-           throw new NoSuchDataException(AUTH_ERROR);
     }
 
     @PostMapping("/withdraw")
@@ -50,7 +47,6 @@ public class CardController {
         else
             throw new NoSuchDataException(AUTH_ERROR);
     }
-
 
     @RequestMapping(value="/logmeout", method = RequestMethod.POST)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {

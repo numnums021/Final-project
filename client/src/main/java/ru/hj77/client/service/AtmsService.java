@@ -14,7 +14,7 @@ public class AtmsService {
 
     private RestTemplate restTemplate;
 
-    public Response getClientBalance(Long cardId, int pin) {
+    public Response getClientBalance(Long cardId, String pin) {
         HttpEntity<RequestBasicOperations> request =
                 new HttpEntity<>(new RequestBasicOperations(cardId, pin));
 
