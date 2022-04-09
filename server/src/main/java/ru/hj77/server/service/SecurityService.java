@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class SecurityService implements UserDetailsService {
+public class SecurityService {//implements UserDetailsService {
     CardRepository cardRepository;
 
     public boolean cardIsAuth(Long cardId, int pin){
@@ -32,12 +32,12 @@ public class SecurityService implements UserDetailsService {
                 .orElseThrow(RuntimeException::new);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Card card = findByCardId(username);
-        return new User(String.valueOf(card.getId_card()),
-                card.getPin(),
-                null);
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        Card card = findByCardId(username);
+//        return new User(String.valueOf(card.getId_card()),
+//                card.getPin(),
+//                null);
+//    }
 
 }
