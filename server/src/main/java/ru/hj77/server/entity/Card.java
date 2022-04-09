@@ -19,7 +19,7 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id_card;
 
-    private int pin;
+    private String pin;
 
     private double balance;
 
