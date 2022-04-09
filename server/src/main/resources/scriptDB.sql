@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS User_roles;
+DROP TABLE IF EXISTS Roles;
 DROP TABLE IF EXISTS Cards;
 DROP TABLE IF EXISTS Clients;
 
@@ -20,23 +22,37 @@ INSERT INTO clients(name, surname, patronymic, date_of_birth) VALUES
 
 CREATE TABLE Cards(
                       id_card SERIAL,
-                      pin INT NOT NULL,
+                      pin VARCHAR(80),
                       balance NUMERIC,
                       id_client INT NOT NULL,
                       FOREIGN KEY (id_client) REFERENCES Clients(id_client),
                       PRIMARY KEY(id_card)
 );
 
+CREATE TABLE roles(
+                      id SERIAL,
+                      name VARCHAR(50) NOT NULL,
+                      PRIMARY KEY (id)
+);
+
+CREATE TABLE users_roles(
+                            user_id BIGINT NOT NULL,
+                            role_id INT NOT NULL,
+                            PRIMARY KEY (user_id, role_id),
+                            FOREIGN KEY (user_id) REFERENCES cards(id_card),
+                            FOREIGN KEY (role_id) REFERENCES roles(id)
+);
+
+INSERT INTO roles (name)
+VALUES ('ROLE_USER') , ('ROLE_ADMIN');
+
 INSERT INTO cards(pin, balance, id_client)  VALUES
-                                                    (0001, 500.3, 1),
-                                                    (0010, 10000.5, 1),
-                                                    (0011, 1039.99, 2),
-                                                    (0100, 990.21, 3),
-                                                    (0101, 1220.13, 4),
-                                                    (0110, 89020.11, 5),
-                                                    (0111, 10.5, 6);
+                                                ('$2a$12$DQ/BYETerfZuovrLq7nWaOdUtx8Or2Nn98vvRkgQtAPB2W5PMDDKO', 500.3, 1),
+                                                ('$2a$12$DQ/BYETerfZuovrLq7nWaOdUtx8Or2Nn98vvRkgQtAPB2W5PMDDKO', 10000.5, 1),
+                                                ('$2a$12$DQ/BYETerfZuovrLq7nWaOdUtx8Or2Nn98vvRkgQtAPB2W5PMDDKO', 1039.99, 2),
+                                                ('$2a$12$DQ/BYETerfZuovrLq7nWaOdUtx8Or2Nn98vvRkgQtAPB2W5PMDDKO', 990.21, 3),
+                                                ('$2a$12$DQ/BYETerfZuovrLq7nWaOdUtx8Or2Nn98vvRkgQtAPB2W5PMDDKO', 1220.13, 4),
+                                                ('$2a$12$DQ/BYETerfZuovrLq7nWaOdUtx8Or2Nn98vvRkgQtAPB2W5PMDDKO', 89020.11, 5),
+                                                ('$2a$12$DQ/BYETerfZuovrLq7nWaOdUtx8Or2Nn98vvRkgQtAPB2W5PMDDKO', 10.5, 6);
 
-
-SELECT name, surname, patronymic, date_of_birth, id_card, balance
-FROM clients, cards
-WHERE clients."id_client" = cards."id_client";
+insert into users_roles (user_id, role_id) VALUES (1, 2);
