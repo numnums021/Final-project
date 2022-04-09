@@ -27,5 +27,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
+    @Bean
+    public UserDetailsService users(){
+        UserDetails user = User.builder()
+                .username("danya")
+                .password("{noop}danya")
+                .roles("USER")
+                .build();
 
+        return new InMemoryUserDetailsManager(user);
+    }
 }
