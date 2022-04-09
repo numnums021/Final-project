@@ -77,8 +77,6 @@ f
 6server/src/main/java/ru/hj77/server/dto/ClientDTO.java,a\0\a08a9156b4154f97f57bbd110a13280cc688a311
 f
 6server/src/main/java/ru/hj77/server/entity/Client.java,f\0\f0078b7f095d87a201345ca65bdbe41f5d5cf466
-t
-Dserver/src/main/java/ru/hj77/server/controller/ClientController.java,a\b\ab78010180ec3fec125665dac96ae60d80bc2e70
 Œ
 \common/src/main/java/ru/hj77/common/communication/requests/RequestTranslationOperations.java,1\d\1df007e36664193a223b56ef89250fa7f902ed0d
 ‡
@@ -107,3 +105,5 @@ n
 >server/src/main/java/ru/hj77/server/service/ServerService.java,b\3\b3285e4a65ad1b9745bd9287bd310a36de9b47f1
 l
 <server/src/main/java/ru/hj77/server/service/CardService.java,3\5\35b1fe7b95b87190152287ac41dd48be4925f0ca
+r
+Bserver/src/main/java/ru/hj77/server/controller/CardController.java,3\8\38b5e57817fb8aa5cca4cdfa42c76c289ff51063
