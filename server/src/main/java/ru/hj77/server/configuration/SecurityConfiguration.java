@@ -37,4 +37,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(user);
     }
+
 }
