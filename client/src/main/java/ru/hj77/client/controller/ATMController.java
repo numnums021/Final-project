@@ -1,12 +1,22 @@
 package ru.hj77.client.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import ru.hj77.client.exception.NoSuchDataException;
 import ru.hj77.client.service.AtmsService;
 import ru.hj77.common.communication.Response;
+import ru.hj77.common.communication.requests.RequestCashTransactions;
+import ru.hj77.common.communication.security.AuthenticationRequest;
+import ru.hj77.common.communication.security.AuthenticationResponse;
+
+import java.util.Objects;
 
 
+@Log
 @AllArgsConstructor
 @RestController
 @RequestMapping("/atms")
@@ -46,6 +56,25 @@ public class ATMController {
             return service.depositMoneyToCard(cardId, money, pin);
         else
             throw new NoSuchDataException(EXC_INFO);
+    }
+
+    @PostMapping("/auth")
+    public ResponseEntity<AuthenticationResponse> auth(@RequestBody AuthenticationRequest request) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        AuthenticationResponse response = restTemplate.postForObject(
+                "http://localhost:1703/auth", request, AuthenticationResponse.class);
+
+        return ResponseEntity.ok(Objects.requireNonNull(response));
+    }
+
+    @PostMapping("/test")
+    public ResponseEntity<Response> test(@RequestBody AuthenticationRequest request){
+        RestTemplate restTemplate = new RestTemplate();
+        AuthenticationResponse response = restTemplate.postForObject(
+                "http://localhost:1703/auth", request, AuthenticationResponse.class);
+
+        return service.test(response.getToken());
     }
 
 }

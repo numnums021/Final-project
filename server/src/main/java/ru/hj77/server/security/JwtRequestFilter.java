@@ -1,6 +1,7 @@
 package ru.hj77.server.security;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+@Log
 @AllArgsConstructor
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -24,7 +25,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-
+        log.info(request.getHeader("Authorization"));
         final String authorizationHeader = request.getHeader("Authorization");
 
         String username = null;
@@ -34,6 +35,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwt = authorizationHeader.substring(7);
             username = jwtUtil.extractUserName(jwt);
         }
+        else
+            log.info("HEADER IS NULL");
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = usersDetailsService.loadUserByUsername(username);

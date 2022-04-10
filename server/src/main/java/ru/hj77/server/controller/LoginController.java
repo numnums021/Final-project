@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.hj77.server.security.AuthenticationRequest;
-import ru.hj77.server.security.AuthenticationResponse;
+import ru.hj77.common.communication.security.AuthenticationRequest;
+import ru.hj77.common.communication.security.AuthenticationResponse;
 import ru.hj77.server.security.JwtUtil;
 import ru.hj77.server.security.MyUsersDetailsService;
 
