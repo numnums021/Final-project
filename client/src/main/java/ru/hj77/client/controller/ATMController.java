@@ -17,34 +17,35 @@ public class ATMController {
     private AtmsService service;
 
     @GetMapping("/cards/{cardId}/pin/{PIN}")
-    public Response getClientBalance(@PathVariable("cardId") Long cardId,
+    public String getClientBalance(@PathVariable("cardId") Long cardId,
                                      @PathVariable("PIN") int pin) {
-
         if ((cardId >= 0) && (pin >= 0))
-            return service.getClientBalance(cardId, pin);
-        else
-            throw new NoSuchDataException(EXC_INFO);
-
+            return "Ваш баланс = " +
+                    service.getClientBalance(cardId, pin).getBalance();
+        else throw new NoSuchDataException(EXC_INFO);
     }
 
     @GetMapping("/withdraw/cards/{cardId}/pin/{PIN}/money/{money}")
-    public Response withdrawMoneyToCard(@PathVariable("cardId") Long cardId,
+    public String withdrawMoneyToCard(@PathVariable("cardId") Long cardId,
                                         @PathVariable("money") int money,
                                         @PathVariable("PIN") int pin) {
-        if ((money > 0) && (pin >= 0))
-            return service.withdrawMoneyToCard(cardId, money, pin);
-        else
+        if ((cardId >= 0) && (money > 0) && (pin >= 0)) {
+            return "Вы внесли денежные средства на карту. "
+                    + "Ваш баланс составляет: "
+                    + service.withdrawMoneyToCard(cardId, money, pin).getBalance();
+        } else
             throw new NoSuchDataException(EXC_INFO);
     }
 
     @GetMapping("/deposit/cards/{cardId}/pin/{PIN}/money/{money}")
-    public Response depositMoneyToCard(@PathVariable("cardId") Long cardId,
+    public String depositMoneyToCard(@PathVariable("cardId") Long cardId,
                                        @PathVariable("money") int money,
                                        @PathVariable("PIN") int pin) {
-
-        if ((money > 0) && (pin >= 0))
-            return service.depositMoneyToCard(cardId, money, pin);
-        else
+        if ((cardId >= 0) && (money > 0) && (pin >= 0)) {
+            return "Вы сняли денежные средства с карты. " +
+                    "Ваш баланс составляет: "
+                    + service.depositMoneyToCard(cardId, money, pin).getBalance();
+        } else
             throw new NoSuchDataException(EXC_INFO);
     }
 

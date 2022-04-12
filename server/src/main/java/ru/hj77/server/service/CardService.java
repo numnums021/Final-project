@@ -7,21 +7,25 @@ import ru.hj77.server.entity.Card;
 import ru.hj77.server.repository.CardRepository;
 
 
+
 @AllArgsConstructor
 @Service
 public class CardService {
+
+    private final String NOT_FOUND_EXCEPTION = "Данная карта не обслуживается. " +
+            "Пожалуйста, обратитесь в тех. поддержку. Карта №";
 
     private CardRepository repository;
 
     public double getBalance(Long cardId) {
         return repository.findById(cardId)
-                .orElseThrow(NoSuchDataException::new)
+                .orElseThrow(() -> new NoSuchDataException(NOT_FOUND_EXCEPTION + cardId))
                 .getBalance();
     }
 
     public double withdrawMoneyFromTheCard(Long cardId, double money){
         Card card = repository.findById(cardId)
-                .orElseThrow(NoSuchDataException::new);
+                .orElseThrow(() -> new NoSuchDataException(NOT_FOUND_EXCEPTION + cardId));
 
         card.setBalance(card.getBalance() + money);
         repository.save(card);
@@ -31,7 +35,7 @@ public class CardService {
 
     public double depositMoneyFromTheCard(Long cardId, double money) {
         Card card = repository.findById(cardId)
-                .orElseThrow(NoSuchDataException::new);
+                .orElseThrow(() -> new NoSuchDataException(NOT_FOUND_EXCEPTION + cardId));
 
         double actualBalanceCard = card.getBalance();
 

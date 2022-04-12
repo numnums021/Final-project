@@ -25,23 +25,20 @@ class CardControllerTest {
     private CardService service;
 
     @Mock
-    SecurityService securityService;
+    private SecurityService securityService;
 
     @InjectMocks
-    CardController controller;
+    private CardController controller;
 
     @Test
     void testGetBalance() {
         when(securityService.cardIsAuth(anyLong(), anyInt()))
                 .thenReturn(true);
 
-        when(service.getBalance(anyLong()))
-                .thenReturn(10.0);
-
-        controller.getBalance(new RequestBasicOperations(1L, 0));
+        controller.getBalance(
+                new RequestBasicOperations(1L, 0));
 
         verify(service).getBalance(1L);
-
     }
 
     @Test
@@ -49,10 +46,8 @@ class CardControllerTest {
         when(securityService.cardIsAuth(anyLong(), anyInt()))
                 .thenReturn(true);
 
-        when(service.withdrawMoneyFromTheCard(anyLong(), anyDouble()))
-                .thenReturn(10.5);
-
-        controller.withdrawMoneyFromTheCard(new RequestCashTransactions(1L, 0, 10));
+        controller.withdrawMoneyFromTheCard(
+                new RequestCashTransactions(1L, 0, 10));
 
         verify(service).withdrawMoneyFromTheCard( 1L, 10.0);
     }
@@ -62,11 +57,10 @@ class CardControllerTest {
         when(securityService.cardIsAuth(anyLong(), anyInt()))
                 .thenReturn(true);
 
-        when(service.depositMoneyFromTheCard(anyLong(), anyDouble()))
-                .thenReturn(10.5);
-
-        controller.depositMoneyFromTheCard(new RequestCashTransactions(1L, 0,10));
+        controller.depositMoneyFromTheCard(
+                new RequestCashTransactions(1L, 0,10));
 
         verify(service).depositMoneyFromTheCard( 1L, 10.0);
     }
+
 }
