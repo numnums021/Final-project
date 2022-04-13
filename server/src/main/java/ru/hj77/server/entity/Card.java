@@ -7,7 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Collection;
 
-
 @Entity
 @Table(name = "cards")
 @AllArgsConstructor

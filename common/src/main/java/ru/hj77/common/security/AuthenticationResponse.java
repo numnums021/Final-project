@@ -1,4 +1,4 @@
-package ru.hj77.common.communication.security;
+package ru.hj77.common.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,19 +2,11 @@ package ru.hj77.server.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.hj77.common.communication.Response;
-import ru.hj77.common.communication.security.AuthenticationRequest;
-import ru.hj77.common.communication.security.AuthenticationResponse;
-import ru.hj77.server.security.JwtUtil;
-import ru.hj77.server.security.MyUsersDetailsService;
+import org.springframework.security.authentication.*;
+import org.springframework.web.bind.annotation.*;
+import ru.hj77.common.security.*;
+import ru.hj77.server.security.*;
 
 @AllArgsConstructor
 @RestController
@@ -41,5 +33,4 @@ public class LoginController {
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
-
 }

@@ -8,7 +8,7 @@
 //import org.mockito.junit.MockitoJUnitRunner;
 //import org.mockito.junit.jupiter.MockitoExtension;
 //import ru.hj77.client.service.AtmsService;
-//import ru.hj77.common.communication.Response;
+//import ru.hj77.common.communication.response.Response;
 //
 //import static org.mockito.ArgumentMatchers.*;
 //import static org.mockito.Mockito.verify;

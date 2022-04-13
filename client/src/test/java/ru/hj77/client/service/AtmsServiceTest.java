@@ -9,7 +9,7 @@
 //import org.mockito.junit.jupiter.MockitoExtension;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.client.RestTemplate;
-//import ru.hj77.common.communication.Response;
+//import ru.hj77.common.communication.response.Response;
 //
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.mockito.ArgumentMatchers.any;
