@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.hj77.server.dto.ClientDTO;
-import ru.hj77.server.service.ServerService;
+import ru.hj77.server.service.ClientService;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/info")
 public class ClientController {
 
-    private ServerService service;
+    private ClientService service;
 
     @GetMapping("/clients")
     public List<ClientDTO> showAllClients() {

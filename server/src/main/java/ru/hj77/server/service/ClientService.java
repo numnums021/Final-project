@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
-public class ServerService {
+public class ClientService {
 
     private ClientRepository clientCrudRepository;
     private MappingUtils mappingUtils;

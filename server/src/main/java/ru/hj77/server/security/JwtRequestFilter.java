@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-@Log
+
 @AllArgsConstructor
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -25,7 +25,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        log.info("getHeader" + request.getHeader("Authorization"));
 
         final String authorizationHeader = request.getHeader("Authorization");
 
@@ -35,14 +34,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
             username = jwtUtil.extractUserName(jwt);
-            log.warning("HEADER IS NOT NULL _ " + authorizationHeader);
-        } else {
-            log.warning("HEADER IS NULL _ " + authorizationHeader);
         }
 
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = usersDetailsService.loadUserByUsername(username);
+
             if(jwtUtil.validateToken(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());

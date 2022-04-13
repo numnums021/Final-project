@@ -64,17 +64,9 @@ f
 }
 Mserver/src/main/java/ru/hj77/server/exception/ControllerExceptionHandler.java,8\c\8c1ae1b05a8a21af5111a9ba1f17a6b0261c04c1
 p
-@client/src/main/java/ru/hj77/client/exception/IncorrectData.java,b\a\ba8203088e6d12d1704e37c8a873ebd90bb9727f
-p
 @server/src/main/java/ru/hj77/server/exception/IncorrectData.java,8\d\8d942f67bc9873328822f6b1a376140b38488424
 v
-Fclient/src/main/java/ru/hj77/client/exception/NoSuchDataException.java,4\2\4218152d6a560a4823a84668cbe88aa6281a0ba7
-v
 Fserver/src/main/java/ru/hj77/server/exception/NoSuchDataException.java,e\4\e4b4f289525fd15c1c370be8c63056a455ac8d33
-n
->server/src/main/java/ru/hj77/server/service/ServerService.java,b\3\b3285e4a65ad1b9745bd9287bd310a36de9b47f1
-l
-<server/src/main/java/ru/hj77/server/service/CardService.java,3\5\35b1fe7b95b87190152287ac41dd48be4925f0ca
 p
 @server/src/main/java/ru/hj77/server/service/SecurityService.java,d\4\d4932d6248a6c36a584ce999214df2036a14cbeb
 ‚
