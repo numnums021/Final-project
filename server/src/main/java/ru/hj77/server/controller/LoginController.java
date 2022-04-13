@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.hj77.common.communication.Response;
 import ru.hj77.common.communication.security.AuthenticationRequest;
 import ru.hj77.common.communication.security.AuthenticationResponse;
 import ru.hj77.server.security.JwtUtil;
@@ -22,11 +23,6 @@ public class LoginController {
     private AuthenticationManager authenticationManager;
     private MyUsersDetailsService usersDetailsService;
     private JwtUtil jwtTokenUtil;
-
-    @RequestMapping("/hello")
-    public String hello(){
-        return "Hello";
-    }
 
     @PostMapping("/auth")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest request) throws Exception {

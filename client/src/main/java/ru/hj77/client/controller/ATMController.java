@@ -2,14 +2,12 @@ package ru.hj77.client.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import ru.hj77.client.exception.NoSuchDataException;
 import ru.hj77.client.service.AtmsService;
 import ru.hj77.common.communication.Response;
-import ru.hj77.common.communication.requests.RequestCashTransactions;
 import ru.hj77.common.communication.security.AuthenticationRequest;
 import ru.hj77.common.communication.security.AuthenticationResponse;
 
@@ -26,12 +24,12 @@ public class ATMController {
 
     private AtmsService service;
 
-    @GetMapping("/cards/{cardId}/pin/{PIN}")
-    public Response getClientBalance(@PathVariable("cardId") Long cardId,
-                                     @PathVariable("PIN") int pin) {
+    @PostMapping("/balance")
+    public Response getClientBalance(@RequestBody AuthenticationRequest request) {
 
-        if ((cardId >= 0) && (pin >= 0))
-            return service.getClientBalance(cardId, pin);
+        if ((Integer.parseInt(request.getUsername()) >= 0) && ((Integer.parseInt(request.getPassword()) >= 0))){
+            return service.getClientBalance(request);
+        }
         else
             throw new NoSuchDataException(EXC_INFO);
 
@@ -42,7 +40,8 @@ public class ATMController {
                                         @PathVariable("money") int money,
                                         @PathVariable("PIN") int pin) {
         if ((money > 0) && (pin >= 0))
-            return service.withdrawMoneyToCard(cardId, money, pin);
+            return service.withdrawMoneyToCard(
+                    new AuthenticationRequest(cardId.toString(), String.valueOf(pin)), money);
         else
             throw new NoSuchDataException(EXC_INFO);
     }
@@ -53,7 +52,8 @@ public class ATMController {
                                        @PathVariable("PIN") int pin) {
 
         if ((money > 0) && (pin >= 0))
-            return service.depositMoneyToCard(cardId, money, pin);
+            return service.depositMoneyToCard(
+                    new AuthenticationRequest(cardId.toString(), String.valueOf(pin)), money);
         else
             throw new NoSuchDataException(EXC_INFO);
     }
@@ -66,15 +66,6 @@ public class ATMController {
                 "http://localhost:1703/auth", request, AuthenticationResponse.class);
 
         return ResponseEntity.ok(Objects.requireNonNull(response));
-    }
-
-    @PostMapping("/test")
-    public ResponseEntity<Response> test(@RequestBody AuthenticationRequest request){
-        RestTemplate restTemplate = new RestTemplate();
-        AuthenticationResponse response = restTemplate.postForObject(
-                "http://localhost:1703/auth", request, AuthenticationResponse.class);
-
-        return service.test(response.getToken());
     }
 
 }
