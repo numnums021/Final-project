@@ -25,7 +25,7 @@ class CardTest {
 
     @Test
     void getPinCode() {
-        int pinCode = 1111;
+        String pinCode = "1111";
 
         card.setPin(pinCode);
 

@@ -9,7 +9,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.hj77.server.entity.Card;
 import ru.hj77.server.entity.Client;
+import ru.hj77.server.entity.Role;
 import ru.hj77.server.repository.CardRepository;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -26,11 +31,13 @@ class ServerServiceTest {
     @InjectMocks
     private CardService service;
 
+    Collection<Role> roles = new ArrayList<>();
+
     @Test
     void testGetBalance(){
         when(cardRepository.findById(anyLong()))
                 .thenReturn(java.util.Optional.of(
-                        new Card(1L, 1, 10, new Client())));
+                        new Card(1L, "11", 10, new Client(), roles)));
 
         double actualBalance = service.getBalance(1L);
 
@@ -40,7 +47,8 @@ class ServerServiceTest {
     @Test
     void testWithdrawMoneyFromTheCard() {
         when(cardRepository.findById(anyLong()))
-                .thenReturn(java.util.Optional.of(new Card(1L, 1, 10, new Client())));
+                .thenReturn(java.util.Optional.of(
+                        new Card(1L, "11", 10, new Client(), roles)));
 
         double actualBalance = service.withdrawMoneyFromTheCard(1L, 10);
 
@@ -50,7 +58,8 @@ class ServerServiceTest {
     @Test
     void testDepositMoneyFromTheCard() {
         when(cardRepository.findById(anyLong()))
-                .thenReturn(java.util.Optional.of(new Card(1L, 1, 10, new Client())));
+                .thenReturn(java.util.Optional.of(
+                        new Card(1L, "11", 10, new Client(), roles)));
 
         double actualBalance = service.depositMoneyFromTheCard(1L, 10);
 

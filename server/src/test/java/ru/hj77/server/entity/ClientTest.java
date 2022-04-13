@@ -2,12 +2,9 @@ package ru.hj77.server.entity;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,9 +54,10 @@ class ClientTest {
 
     @Test
     void getCards() {
+        Collection<Role> roles = new ArrayList<>();
         List<Card> cardsList = Arrays.asList(
-                new Card(1L, 1111, 1232.11, client),
-                new Card(2L, 2222, 9800.5, client)
+                new Card(1L, "11", 1232.11, client, roles),
+                new Card(2L, "22", 9800.5, client, roles)
         );
         client.setCards(cardsList);
         assertEquals(cardsList, client.getCards());
