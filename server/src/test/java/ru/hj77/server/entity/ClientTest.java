@@ -2,8 +2,6 @@ package ru.hj77.server.entity;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.Date;

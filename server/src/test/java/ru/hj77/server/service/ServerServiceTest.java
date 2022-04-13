@@ -56,4 +56,5 @@ class ServerServiceTest {
 
         assertEquals(0 ,actualBalance);
     }
+
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import ru.hj77.client.exception.NoSuchDataException;
 import ru.hj77.common.communication.Response;
 import ru.hj77.common.communication.requests.RequestBasicOperations;
 import ru.hj77.common.communication.requests.RequestCashTransactions;
@@ -23,16 +24,16 @@ public class AtmsService {
     }
 
     public Response withdrawMoneyToCard(Long cardId, int money, int pin) {
-        HttpEntity<RequestCashTransactions> request = new HttpEntity<>(
-                new RequestCashTransactions(cardId, pin, money));
+        HttpEntity<RequestCashTransactions> request =
+                new HttpEntity<>(new RequestCashTransactions(cardId, pin, money));
 
         return restTemplate.postForObject(
                 "http://localhost:1703/card/withdraw/", request, Response.class);
     }
 
     public Response depositMoneyToCard(Long cardId, int money, int pin) {
-        HttpEntity<RequestCashTransactions> request = new HttpEntity<>(
-                new RequestCashTransactions(cardId, pin, money));
+        HttpEntity<RequestCashTransactions> request =
+                new HttpEntity<>(new RequestCashTransactions(cardId, pin, money));
 
         return restTemplate.postForObject(
                 "http://localhost:1703/card/deposit/", request, Response.class);
