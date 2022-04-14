@@ -11,7 +11,6 @@ import ru.hj77.server.entity.Card;
 import ru.hj77.server.entity.Client;
 import ru.hj77.server.repository.CardRepository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 

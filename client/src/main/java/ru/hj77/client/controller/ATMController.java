@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.hj77.client.exception.NoSuchDataException;
 import ru.hj77.client.service.AtmsService;
-import ru.hj77.common.communication.Response;
 
 
 @AllArgsConstructor
@@ -21,7 +20,8 @@ public class ATMController {
                                      @PathVariable("PIN") int pin) {
         if ((cardId >= 0) && (pin >= 0))
             return "Ваш баланс = " +
-                    service.getClientBalance(cardId, pin).getBalance();
+                    service.getClientBalance(cardId, pin).getBalance()
+                    + " руб.";
         else throw new NoSuchDataException(EXC_INFO);
     }
 
@@ -32,7 +32,8 @@ public class ATMController {
         if ((cardId >= 0) && (money > 0) && (pin >= 0)) {
             return "Вы внесли денежные средства на карту. "
                     + "Ваш баланс составляет: "
-                    + service.withdrawMoneyToCard(cardId, money, pin).getBalance();
+                    + service.withdrawMoneyToCard(cardId, money, pin).getBalance()
+                    + " руб.";
         } else
             throw new NoSuchDataException(EXC_INFO);
     }
@@ -44,7 +45,8 @@ public class ATMController {
         if ((cardId >= 0) && (money > 0) && (pin >= 0)) {
             return "Вы сняли денежные средства с карты. " +
                     "Ваш баланс составляет: "
-                    + service.depositMoneyToCard(cardId, money, pin).getBalance();
+                    + service.depositMoneyToCard(cardId, money, pin).getBalance()
+                    + " руб.";
         } else
             throw new NoSuchDataException(EXC_INFO);
     }

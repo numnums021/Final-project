@@ -12,8 +12,7 @@ import ru.hj77.server.repository.CardRepository;
 @Service
 public class CardService {
 
-    private final String NOT_FOUND_EXCEPTION = "Данная карта не обслуживается. " +
-            "Пожалуйста, обратитесь в тех. поддержку. Карта №";
+    private final String NOT_FOUND_EXCEPTION = "Ошибка при выполнении запроса. Обратитесь в тех. поддержку";
 
     private CardRepository repository;
 
