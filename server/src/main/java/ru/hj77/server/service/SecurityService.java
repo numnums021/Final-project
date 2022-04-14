@@ -7,19 +7,17 @@ import ru.hj77.server.repository.CardRepository;
 
 import javax.persistence.EntityNotFoundException;
 
-
 @AllArgsConstructor
 @Service
 public class SecurityService {
 
-    private final String NOT_FOUND_EXCEPTION = "Данная карта не обслуживается. " +
-            "Пожалуйста, обратитесь в тех. поддержку. Карта №";
-
     CardRepository cardRepository;
 
     public boolean cardIsAuth(Long cardId, int pin){
+        String exc = "Данная карта не обслуживается. " +
+                "Пожалуйста, обратитесь в тех. поддержку. Карта №";
         return cardRepository.findById(cardId)
-                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_EXCEPTION + cardId))
+                .orElseThrow(() -> new EntityNotFoundException(exc + cardId))
                 .getPin() == pin;
     }
 
