@@ -10,4 +10,12 @@ public class ApplicationConfig {
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
+    @Bean
+    public CardSettings getCardSettings(){
+        return new CardSettings();
+    }
+    @Bean
+    public String getJWT(){
+        return "";
+    }
 }

@@ -51,8 +51,6 @@ d
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 t
 Dserver/src/main/java/ru/hj77/server/repository/ClientRepository.java,7\b\7b4e548d78f76a5a7b0f3de54d4bf6028d025f0b
-x
-Hclient/src/main/java/ru/hj77/client/configuration/ApplicationConfig.java,e\2\e26cfcc98ff46f05f7d2924d821d223807e3bcd5
 r
 Bserver/src/main/java/ru/hj77/server/repository/CardRepository.java,9\4\9444a2ce4b354ca5fdb2e6dec02933b4839ac326
 f
