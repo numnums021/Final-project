@@ -1,9 +1,14 @@
 package ru.hj77.common.communication.requests;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Value
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 public class RequestCashTransactions {
-    Long cardId;
     int money;
 }

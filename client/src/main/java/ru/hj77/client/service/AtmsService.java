@@ -22,22 +22,20 @@ public class AtmsService {
     private String token;
 
     public BasicResponse getClientBalance() {
-        HttpEntity<BasicCashTransactions> request =
-                new HttpEntity<>(new BasicCashTransactions(Long.parseLong(card.getCardId())), getHeaders());
-
+        HttpEntity<BasicResponse> request = new HttpEntity<>(null, getHeaders());
         return restTemplate.postForObject("http://localhost:1703/card/balance/", request, BasicResponse.class);
     }
 
     public BasicResponse withdrawMoneyToCard(int money) {
-        HttpEntity<RequestCashTransactions> request =
-                new HttpEntity<>(new RequestCashTransactions(Long.parseLong(card.getCardId()), money), getHeaders());
+        HttpEntity<RequestCashTransactions> request = new HttpEntity<>(
+                new RequestCashTransactions(money), getHeaders());
 
         return restTemplate.postForObject("http://localhost:1703/card/withdraw/", request, BasicResponse.class);
     }
 
     public BasicResponse depositMoneyToCard(int money) {
         HttpEntity<RequestCashTransactions> request = new HttpEntity<>(
-                        new RequestCashTransactions(Long.parseLong(card.getCardId()), money), getHeaders());
+                        new RequestCashTransactions(money), getHeaders());
 
         return restTemplate.postForObject("http://localhost:1703/card/deposit/", request, BasicResponse.class);
     }
