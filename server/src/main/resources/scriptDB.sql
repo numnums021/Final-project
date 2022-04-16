@@ -55,4 +55,11 @@ INSERT INTO cards(pin, balance, id_client)  VALUES
                                                 ('$2a$12$DQ/BYETerfZuovrLq7nWaOdUtx8Or2Nn98vvRkgQtAPB2W5PMDDKO', 89020.11, 5),
                                                 ('$2a$12$DQ/BYETerfZuovrLq7nWaOdUtx8Or2Nn98vvRkgQtAPB2W5PMDDKO', 10.5, 6);
 
-insert into users_roles (user_id, role_id) VALUES (1, 2);
+insert into users_roles (user_id, role_id)
+VALUES (1, 1),
+       (2, 1),
+       (3, 1),
+       (4, 1),
+       (5, 1),
+       (6, 1),
+       (7, 1);
