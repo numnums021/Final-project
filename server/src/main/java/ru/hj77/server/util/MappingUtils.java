@@ -4,8 +4,8 @@ import lombok.NonNull;
 import org.springframework.stereotype.Service;
 import ru.hj77.server.dto.CardDTO;
 import ru.hj77.server.dto.ClientDTO;
-import ru.hj77.server.entity.Card;
-import ru.hj77.server.entity.Client;
+import ru.hj77.server.entities.Card;
+import ru.hj77.server.entities.Client;
 
 import java.util.ArrayList;
 import java.util.List;

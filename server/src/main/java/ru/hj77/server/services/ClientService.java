@@ -1,10 +1,10 @@
-package ru.hj77.server.service;
+package ru.hj77.server.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.hj77.server.exception.NoSuchDataException;
 import ru.hj77.server.dto.ClientDTO;
-import ru.hj77.server.repository.ClientRepository;
+import ru.hj77.server.repositories.ClientRepository;
 import ru.hj77.server.util.MappingUtils;
 
 import java.util.List;

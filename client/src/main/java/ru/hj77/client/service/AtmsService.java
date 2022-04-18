@@ -23,26 +23,26 @@ public class AtmsService {
 
     public BasicResponse getClientBalance() {
         HttpEntity<BasicResponse> request = new HttpEntity<>(null, getHeaders());
-        return restTemplate.postForObject("http://localhost:1703/card/balance/", request, BasicResponse.class);
+        return restTemplate.postForObject("http://localhost:1702/card/balance/", request, BasicResponse.class);
     }
 
     public BasicResponse withdrawMoneyToCard(int money) {
         HttpEntity<RequestCashTransactions> request = new HttpEntity<>(
                 new RequestCashTransactions(money), getHeaders());
 
-        return restTemplate.postForObject("http://localhost:1703/card/withdraw/", request, BasicResponse.class);
+        return restTemplate.postForObject("http://localhost:1702/card/withdraw/", request, BasicResponse.class);
     }
 
     public BasicResponse depositMoneyToCard(int money) {
         HttpEntity<RequestCashTransactions> request = new HttpEntity<>(
                         new RequestCashTransactions(money), getHeaders());
 
-        return restTemplate.postForObject("http://localhost:1703/card/deposit/", request, BasicResponse.class);
+        return restTemplate.postForObject("http://localhost:1702/card/deposit/", request, BasicResponse.class);
     }
 
     public String auth(){
         AuthenticationResponse response = restTemplate.postForObject(
-                "http://localhost:1703/auth", new AuthenticationRequest(card.getCardId(), card.getPin()), AuthenticationResponse.class);
+                "http://localhost:1702/auth", new AuthenticationRequest(card.getCardId(), card.getPin()), AuthenticationResponse.class);
         if (Objects.requireNonNull(response).getToken() != null) {
             token = "Bearer " + response.getToken();
             return "успешно";

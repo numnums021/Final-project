@@ -1,4 +1,4 @@
-package ru.hj77.server.entity;
+package ru.hj77.server.entities;
 
 import lombok.*;
 import javax.persistence.*;

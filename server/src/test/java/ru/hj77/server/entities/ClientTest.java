@@ -1,4 +1,4 @@
-package ru.hj77.server.entity;
+package ru.hj77.server.entities;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
