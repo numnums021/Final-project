@@ -1,4 +1,4 @@
-package ru.hj77.server.service;
+package ru.hj77.server.services;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -7,10 +7,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.hj77.server.entity.Card;
-import ru.hj77.server.entity.Client;
-import ru.hj77.server.entity.Role;
-import ru.hj77.server.repository.CardRepository;
+import ru.hj77.server.entities.Card;
+import ru.hj77.server.entities.Client;
+import ru.hj77.server.entities.Role;
+import ru.hj77.server.repositories.CardRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;

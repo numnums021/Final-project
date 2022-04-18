@@ -1,4 +1,4 @@
-package ru.hj77.server.security;
+package ru.hj77.server.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,15 +9,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.hj77.server.entity.Card;
-import ru.hj77.server.entity.Role;
-import ru.hj77.server.repository.CardRepository;
+import ru.hj77.server.entities.Card;
+import ru.hj77.server.entities.Role;
+import ru.hj77.server.repositories.CardRepository;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
-public class MyUsersDetailsService implements UserDetailsService {
+public class CardsDetailsService implements UserDetailsService {
+
     private CardRepository cardRepository;
 
     public Card findByCardId(String username){
@@ -30,6 +31,9 @@ public class MyUsersDetailsService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Card card = findByCardId(username);
+        if (card == null)
+            throw new UsernameNotFoundException(String.format("Карта '%s' не найдена", username));
+
         return new User(String.valueOf(card.getId_card()),
                 card.getPin(),
                 mapRolesToAuthorities(card.getRoles()));

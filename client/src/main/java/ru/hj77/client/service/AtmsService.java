@@ -22,29 +22,27 @@ public class AtmsService {
     private String token;
 
     public BasicResponse getClientBalance() {
-        HttpEntity<BasicCashTransactions> request =
-                new HttpEntity<>(new BasicCashTransactions(Long.parseLong(card.getCardId())), getHeaders());
-
-        return restTemplate.postForObject("http://localhost:1703/card/balance/", request, BasicResponse.class);
+        HttpEntity<BasicResponse> request = new HttpEntity<>(null, getHeaders());
+        return restTemplate.postForObject("http://localhost:1702/card/balance/", request, BasicResponse.class);
     }
 
     public BasicResponse withdrawMoneyToCard(int money) {
-        HttpEntity<RequestCashTransactions> request =
-                new HttpEntity<>(new RequestCashTransactions(Long.parseLong(card.getCardId()), money), getHeaders());
+        HttpEntity<RequestCashTransactions> request = new HttpEntity<>(
+                new RequestCashTransactions(money), getHeaders());
 
-        return restTemplate.postForObject("http://localhost:1703/card/withdraw/", request, BasicResponse.class);
+        return restTemplate.postForObject("http://localhost:1702/card/withdraw/", request, BasicResponse.class);
     }
 
     public BasicResponse depositMoneyToCard(int money) {
         HttpEntity<RequestCashTransactions> request = new HttpEntity<>(
-                        new RequestCashTransactions(Long.parseLong(card.getCardId()), money), getHeaders());
+                        new RequestCashTransactions(money), getHeaders());
 
-        return restTemplate.postForObject("http://localhost:1703/card/deposit/", request, BasicResponse.class);
+        return restTemplate.postForObject("http://localhost:1702/card/deposit/", request, BasicResponse.class);
     }
 
     public String auth(){
         AuthenticationResponse response = restTemplate.postForObject(
-                "http://localhost:1703/auth", new AuthenticationRequest(card.getCardId(), card.getPin()), AuthenticationResponse.class);
+                "http://localhost:1702/auth", new AuthenticationRequest(card.getCardId(), card.getPin()), AuthenticationResponse.class);
         if (Objects.requireNonNull(response).getToken() != null) {
             token = "Bearer " + response.getToken();
             return "успешно";

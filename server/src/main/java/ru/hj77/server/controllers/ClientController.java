@@ -1,4 +1,4 @@
-package ru.hj77.server.controller;
+package ru.hj77.server.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.hj77.server.dto.ClientDTO;
-import ru.hj77.server.service.ClientService;
+import ru.hj77.server.services.ClientService;
 
 import java.util.List;
 

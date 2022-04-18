@@ -1,4 +1,4 @@
-package ru.hj77.server.configuration;
+package ru.hj77.server.configurations;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,18 +12,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import ru.hj77.server.security.JwtRequestFilter;
-import ru.hj77.server.security.MyUsersDetailsService;
+import ru.hj77.server.services.CardsDetailsService;
 
 @AllArgsConstructor
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private MyUsersDetailsService myUsersDetailsService;
+    private CardsDetailsService cardsDetailsService;
     private JwtRequestFilter jwtRequestFilter;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUsersDetailsService);
+        auth.userDetailsService(cardsDetailsService);
     }
 
     @Override
